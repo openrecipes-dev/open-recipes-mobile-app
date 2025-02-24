@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
-    marginLeft: 0,
+    marginLeft: 0, 
   },
   menuIcon: {
     margin: 0,
