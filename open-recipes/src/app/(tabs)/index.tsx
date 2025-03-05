@@ -4,6 +4,7 @@ import { HelloWave } from '@/src/components/HelloWave';
 import ParallaxScrollView from '@/src/components/ParallaxScrollView';
 import { ThemedText } from '@/src/components/ThemedText';
 import { ThemedView } from '@/src/components/ThemedView';
+import { View, Text } from 'react-native';
 
 export default function HomeScreen() {
   return (
@@ -19,6 +20,13 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
+
+      <View className="flex-1 items-center justify-center bg-red-100">
+        <Text className="text-blue-600 font-bold text-lg">
+          Hello, Tailwind in React Native!
+        </Text>
+    </View>
+
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
