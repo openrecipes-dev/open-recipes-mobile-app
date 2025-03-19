@@ -3,10 +3,10 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
