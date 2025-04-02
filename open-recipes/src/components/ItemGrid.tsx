@@ -20,13 +20,13 @@ const ItemGrid: FC<ItemGridProps> = ({ items, isLoading, refreshing, onRefresh }
     console.error("Items prop is not an array:", items);
     return null;
   }
-
+ 
   const renderItem = ({ item }: { item: FlippItem }) => (
     <View className="w-1/3 p-1">
       <View className="bg-white rounded-lg p-2 shadow-md h-[250px]">
         {/* Product Image */}
         <Image
-          source={{ uri: item.clipping_image_url }}
+          source={{ uri: item.clean_image_url }}
           className="w-full h-[120px] rounded-md"
           resizeMode="contain"
         />

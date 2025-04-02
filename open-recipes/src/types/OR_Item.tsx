@@ -2,7 +2,7 @@ export interface FlippItem {
     id: string;
     name: string;
     current_price: number;
-    clipping_image_url: string;
+    clean_image_url: string;
     merchant_logo: string;
     merchant_name: string;
     sale_story: string;
