@@ -1,4 +1,4 @@
-export interface FlippItem {
+export interface OR_Item {
     id: string;
     name: string;
     current_price: number;
@@ -8,7 +8,7 @@ export interface FlippItem {
     sale_story: string;
   }
   
-  export type FlippResponse = FlippItem[];
+  export type ORResponse = OR_Item[];
 
   
   export interface UserLocation {

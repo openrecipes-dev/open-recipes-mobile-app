@@ -1,8 +1,8 @@
-import { FlippResponse, UserLocation } from '../types/OR_Item';
+import { ORResponse, UserLocation } from '../types/OR_Item';
 
 const BASE_URL = 'http://localhost:8080/search/ingredients/all';
 
-export const searchFlippItems = async (query: string, location: UserLocation | null): Promise<FlippResponse> => {
+export const searchORItems = async (query: string, location: UserLocation | null): Promise<ORResponse> => {
   const postalCode = location ? await getPostalCodeFromLocation(location) : '98225';
   const url = `${BASE_URL}?searchText=${query}&postalCode=${postalCode}`;
   
@@ -10,8 +10,9 @@ export const searchFlippItems = async (query: string, location: UserLocation | n
   if (!response.ok) {
     throw new Error('Failed to fetch items');
   }
-  
+
   return response.json();
+  
 };
 
 const getPostalCodeFromLocation = async (location: UserLocation): Promise<string> => {
@@ -20,6 +21,7 @@ const getPostalCodeFromLocation = async (location: UserLocation): Promise<string
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${location.latitude}&lon=${location.longitude}`
     );
     const data = await response.json();
+    
     return data.address.postcode || '98225';
   } catch (error) {
     console.error('Error getting postal code:', error);

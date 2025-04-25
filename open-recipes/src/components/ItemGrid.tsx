@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -7,27 +7,27 @@ import {
   ActivityIndicator,
   Dimensions
 } from 'react-native';
-import { FlippItem } from '../types/OR_Item';
+import { OR_Item } from '../types/OR_Item';
 
 interface ItemGridProps {
-  items: FlippItem[];
+  items: OR_Item[];
   isLoading?: boolean;
   refreshing?: boolean;
   onRefresh?: () => void;
 }
 
 const screenWidth = Dimensions.get('window').width;
-const cardMargin = 8; // margin around each card
+const cardMargin = 8;
 const cardsPerRow = 3;
 const cardWidth = (screenWidth - cardMargin * (cardsPerRow + 1)) / cardsPerRow;
 
-const ItemGrid: FC<ItemGridProps> = ({ items, isLoading, refreshing, onRefresh }) => {
+const ItemGrid = ({ items, isLoading, refreshing, onRefresh }: ItemGridProps) => {
   if (!Array.isArray(items)) {
     console.error("Items prop is not an array:", items);
     return null;
   }
 
-  const renderItem = ({ item }: { item: FlippItem }) => (
+  const renderItem = ({ item }: { item: OR_Item }) => (
     <View
       style={{
         width: cardWidth,
@@ -35,22 +35,14 @@ const ItemGrid: FC<ItemGridProps> = ({ items, isLoading, refreshing, onRefresh }
       }}
       className="bg-white rounded-lg p-2 shadow-md"
     >
-      {/* Product Image */}
       <Image
         source={{ uri: item.clean_image_url }}
         className="w-full h-[120px] rounded-md"
         resizeMode="contain"
       />
-
-      {/* Product Name */}
-      <Text
-        numberOfLines={2}
-        className="text-xs mt-2 mb-1 font-semibold h-9"
-      >
+      <Text numberOfLines={2} className="text-xs mt-2 mb-1 font-semibold h-9">
         {item.name}
       </Text>
-
-      {/* Price Section */}
       <View className="mt-1">
         {item.current_price ? (
           <Text className="text-base font-bold text-green-600">
@@ -62,8 +54,6 @@ const ItemGrid: FC<ItemGridProps> = ({ items, isLoading, refreshing, onRefresh }
           </Text>
         )}
       </View>
-
-      {/* Merchant Logo */}
       <View className="absolute bottom-2 right-2">
         <Image
           source={{ uri: item.merchant_logo }}

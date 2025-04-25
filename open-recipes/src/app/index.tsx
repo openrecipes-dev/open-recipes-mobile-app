@@ -3,12 +3,12 @@ import SearchBar from '../components/SearchBar';
 import ItemGrid from '../components/ItemGrid';
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
-import { searchFlippItems } from '../api/OR_Api';
-import { FlippItem, UserLocation } from '../types/OR_Item';
+import { searchORItems } from '../api/OR_Api';
+import { OR_Item, UserLocation } from '../types/OR_Item';
 
 export default function Page() {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<FlippItem[]>([]);
+  const [searchResults, setSearchResults] = useState<OR_Item[]>([]);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isLocationLoading, setIsLocationLoading] = useState<boolean>(true);
@@ -59,7 +59,7 @@ export default function Page() {
     if (query.length > 2) {
       setIsLoading(true);
       try {
-        const response = await searchFlippItems(query, userLocation);
+        const response = await searchORItems(query, userLocation);
         setSearchResults(response); // <-- updated here
       } catch (error) {
         console.error('Search error:', error);
@@ -82,7 +82,7 @@ export default function Page() {
     
     setRefreshing(true);
     try {
-      const response = await searchFlippItems(searchQuery, userLocation);
+      const response = await searchORItems(searchQuery, userLocation);
       setSearchResults(response); 
     } catch (error) {
       console.error('Refresh error:', error);
