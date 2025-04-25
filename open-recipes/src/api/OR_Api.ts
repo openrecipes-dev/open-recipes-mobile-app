@@ -1,4 +1,5 @@
 import { ORResponse, UserLocation } from '../types/OR_Item';
+import axios from 'axios';
 
 const BASE_URL = 'http://localhost:8080/search/ingredients/all';
 
@@ -17,10 +18,10 @@ export const searchORItems = async (query: string, location: UserLocation | null
 
 const getPostalCodeFromLocation = async (location: UserLocation): Promise<string> => {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${location.latitude}&lon=${location.longitude}`
     );
-    const data = await response.json();
+    const data = response.data;
     
     return data.address.postcode || '98225';
   } catch (error) {
