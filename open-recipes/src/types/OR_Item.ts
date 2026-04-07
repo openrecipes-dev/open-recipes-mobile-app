@@ -1,4 +1,4 @@
-export interface OR_Item {
+export interface OpenRecipeServiceItem {
     id: string;
     name: string;
     current_price: number;
